@@ -1,0 +1,14 @@
+- name: Install db on debian
+  hosts: dbservers
+  tasks:
+    - name: Install mariasb
+      become: true
+      ansible.builtin.apt:
+        name:
+          - mariadb-server
+          - mariadb-client
+    - name: Start mariadb
+      ansible.builtin.service:
+        name: mariadb
+        state: started
+        enabled: true
